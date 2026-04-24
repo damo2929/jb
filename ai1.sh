@@ -57,7 +57,7 @@ for d in "${source_drives[@]}"; do
             source_dev=$([[ $d =~ [0-9]$ ]] && echo "${d}p${p}" || echo "${d}${p}")
             target_dev="${target_disks[$target_idx]}"
             
-            match_lines+=("/usr/bin/pveceph osd create /dev/$target_dev -db_dev /dev/$source_dev --db_size 150G")
+            match_lines+=("/usr/bin/pveceph osd create /dev/$target_dev -db_dev /dev/$source_dev --db_dev_size 150G")
             ((target_idx++))
         fi
     done
