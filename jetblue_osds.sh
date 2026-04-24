@@ -46,8 +46,8 @@ for d in "${source_drives[@]}"; do
 
     for ((p=1; p<=parts_per_drive; p++)); do
         if [ "$target_idx" -lt "$num_targets" ]; then
-            start=$(( (p - 1) * percentage_step ))
-            end=$(( p * percentage_step ))
+            start=$(( (p + 1) * percentage_step ))
+            end=$(( p * percentage_step )-1 )
 
             /usr/sbin/parted -s "/dev/$d" mkpart primary "${start}%" "${end}%"
 
@@ -75,5 +75,5 @@ done
 echo "------------------------------------------------"
 echo "Captured matches:"
 for line in "${match_lines[@]}"; do
-    $line
+    echo "${line}"
 done
