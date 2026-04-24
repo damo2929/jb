@@ -51,7 +51,7 @@ for d in "${source_drives[@]}"; do
             end=$(( start + partition_size - 1 ))
 
             echo "  Creating Partition $p: Start ${start}s, End ${end}s"
-            /usr/sbin/parted -s "/dev/$d" unit s mkpart primary "${start}" "${end}"
+            /usr/sbin/parted -s -a optimal "/dev/$d" unit s mkpart primary "${start}" "${end}"
 
             # Handle device naming (nvme0n1p1 vs sda1)
             source_dev=$([[ $d =~ [0-9]$ ]] && echo "${d}p${p}" || echo "${d}${p}")
